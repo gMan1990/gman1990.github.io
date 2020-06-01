@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>喜欢高兴爱 - xhgxa</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<style>
+body {
+    background-size: contain;
+    background-image:
+        url("https://img.alicdn.com/imgextra/i4/2547429070/TB2RK.LkxtnkeRjSZSgXXXAuXXa_!!2547429070.jpg");
+}
+</style>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.10.2/underscore.min.js"></script>
+    <script>
+        jQuery(function($) {
+            let resize = function() {
+                document.body.style.minHeight = $(window).height() + "px";
+            };
+            window.onresize = _.throttle(resize, 500);
+            resize(); /* init */
+        });
+    </script>
+</body>
+</html>
