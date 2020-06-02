@@ -13,12 +13,14 @@ body {
     background-size: contain;
     background-image:
         url("https://img.alicdn.com/imgextra/i4/2547429070/TB2RK.LkxtnkeRjSZSgXXXAuXXa_!!2547429070.jpg");
+    overflow: hidden;
     font-family: monospace;
 }
 
 #container {
     opacity: 0.6;
     overflow: auto;
+    height: 100%;
 }
 
 #container * {
@@ -88,7 +90,7 @@ body {
     <script>
         jQuery(function($) {
             function resize() {
-                window["container"].style.height = $(window).height() + "px";
+                document.body.style.height = $(window).height() + "px";
             }
             window.onresize = _.throttle(resize, 500);
             resize(); /* init */
@@ -97,6 +99,7 @@ body {
                 el : "#app"
             });
             $("#myTable").DataTable({
+                dom : '<"#charitable.float-left">frtip',
                 autoWidth : false,
                 order : [ [ 2, "desc" ] ],
                 data : [
@@ -113,6 +116,7 @@ body {
                     [ " *钙", 1.25, "2020-05-29 11:25:09", "alipay", 0 ]
                 ]
             });
+            $("#charitable").text("善举记录（使用艰难的手动更新）");
             document.body.style.display = "block";
         });
 
