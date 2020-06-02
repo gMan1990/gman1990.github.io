@@ -4,26 +4,122 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>喜欢高兴爱 - xhgxa</title>
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="https://unpkg.com/element-ui@2.13.2/lib/theme-chalk/index.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <style>
 body {
     background-size: contain;
     background-image:
         url("https://img.alicdn.com/imgextra/i4/2547429070/TB2RK.LkxtnkeRjSZSgXXXAuXXa_!!2547429070.jpg");
+    font-family: monospace;
+}
+
+#container {
+    opacity: 0.6;
+    overflow: auto;
+}
+
+#container * {
+    color: green;
+    line-height: unset;
+}
+
+[v-cloak] {
+    display: none;
 }
 </style>
 </head>
-<body>
+<body v-cloak>
+    <div id="container" class="container text-center alert-light">
+        <el-form id="app" v-cloak label-width="85px" @submit.native.prevent>
+            <el-form-item>
+                <h3>日行一善，防止抑郁</h3>
+            </el-form-item>
+            <el-form-item class="alert-warning">
+                <div>鄙人<span class="alert-link">安静的等待</span>，梦想能住上房开上车！现实残酷，现贴上<span class="alert-link">1.25元</span>收钱码在线乞讨！</div>
+                <div>如你所见，乞讨网站虽然做的很low，但在下认为，只要<span class="alert-link">有个盆</span>让好心人扔钱就足够了！</div>
+                <div>多种<span class="alert-link">投喂</span>方案随心选择，万一一个盆装不下呢！</div>
+                <div>努力无果的我，能圆梦吗？<span class="alert-link">好人一生平安！</span></div>
+            </el-form-item>
+            <el-form-item label="￥1.25">
+                <el-col :sm="8">
+                    <div>支付宝(推荐)</div>
+                    <img alt="alipay" src="pay/alipay-1.25.png" height="130">
+                </el-col>
+                <el-col :sm="8">
+                    <div>微信付</div>
+                    <img alt="wxpay" src="pay/wxpay-1.25.png" height="130">
+                </el-col>
+                <el-col :sm="8">
+                    <div>企鹅付<a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=695897765&site=qq&menu=yes"><img src="https://wpa.qq.com/pa?p=2:695897765:51" alt="qq"></a></div>
+                    <img alt="qqpay" src="pay/qqpay-1.25.png" height="130">
+                </el-col>
+            </el-form-item>
+            <el-form-item label="饿了么红包">
+                <div>【每天可领】<a target="_blank" class="text-primary" href="https://m.tb.cn/h.VNbWdS0">https://m.tb.cn/h.VNbWdS0</a>（手机打开）</div>
+                <code>复制这条信息，$LxMn1IxiliV$，到【手机淘宝】即可查看</code>
+            </el-form-item>
+        </el-form>
+        <table id="myTable" class="compact">
+            <thead>
+                <tr>
+                    <th>大善人</th>
+                    <th>金额</th>
+                    <th>时间</th>
+                    <th>投喂方式</th>
+                </tr>
+            </thead>
+        </table>
+        <div id="disqus_thread"></div>
+
+        <footer>
+            <div>无房无车无友 · 三无个人出品</div>
+            <div>版权所有 · All rights reserved</div>
+        </footer>
+    </div>
+
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/underscore@1.10.2/underscore.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui@2.13.2/lib/index.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script>
         jQuery(function($) {
-            let resize = function() {
-                document.body.style.minHeight = $(window).height() + "px";
-            };
+            function resize() {
+                window["container"].style.height = $(window).height() + "px";
+            }
             window.onresize = _.throttle(resize, 500);
             resize(); /* init */
+
+            new Vue({
+                el : "#app"
+            });
+            $("#myTable").DataTable({
+                autoWidth : false,
+                order : [ [ 2, "desc" ] ],
+                data : [
+                    [ "**兴", 1.25, "2020-06-02 13:03:08", "alipay", 0 ],
+                    [ "**瑞", 1.25, "2020-06-01 10:15:43", "alipay", 0 ],
+                    [ "**瑞", 1.25, "2020-06-01 10:11:21", "alipay", 0 ],
+                    [ "**梅", 1.25, "2020-05-31 21:09:51", " wxpay", 0 ],
+                    [ "**凯", 1.25, "2020-05-31 17:38:02", "alipay", 0 ],
+                    [ " *婷", 1.25, "2020-05-31 12:50:29", " wxpay", 0 ],
+                    [ " *婷", 1.25, "2020-05-31 08:43:26", " wxpay", 0 ],
+                    [ " *柳", 1.25, "2020-05-30 14:50:01", "alipay", 0 ],
+                    [ "**军", 1.25, "2020-05-30 14:33:48", "alipay", 0 ],
+                    [ "**钰", 1.25, "2020-05-29 16:47:34", "alipay", 0 ],
+                    [ " *钙", 1.25, "2020-05-29 11:25:09", "alipay", 0 ]
+                ]
+            });
+            document.body.style.display = "block";
         });
+
+        function disqus_config() {
+            this.page.identifier = "https://xhgxa.ml/";
+        }
     </script>
+    <script src="https://xhgxa-ml.disqus.com/embed.js"></script>
 </body>
 </html>
