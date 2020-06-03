@@ -18,7 +18,7 @@ body {
 }
 
 #container {
-    opacity: 0.6;
+    opacity: 0.7;
     overflow: auto;
     height: 100%;
 }
@@ -35,7 +35,7 @@ body {
 </head>
 <body v-cloak>
     <div id="container" class="container text-center alert-light">
-        <el-form id="app" v-cloak label-width="85px" @submit.native.prevent>
+        <el-form id="app" v-cloak label-width="54px" @submit.native.prevent>
             <el-form-item>
                 <h3>日行一善，防止抑郁</h3>
             </el-form-item>
@@ -48,15 +48,15 @@ body {
             <el-form-item label="￥1.25">
                 <el-col :sm="8">
                     <div>支付宝(推荐)</div>
-                    <img alt="alipay" src="pay/alipay-1.25.png" height="130">
+                    <img alt="alipay-1.25" src="pay/alipay-1.25.png" height="130">
                 </el-col>
                 <el-col :sm="8">
                     <div>微信付</div>
-                    <img alt="wxpay" src="pay/wxpay-1.25.png" height="130">
+                    <img alt="wxpay-1.25" src="pay/wxpay-1.25.png" height="130">
                 </el-col>
                 <el-col :sm="8">
                     <div>企鹅付<a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=695897765&site=qq&menu=yes"><img src="https://pub.idqqimg.com/qconn/wpa/button/button_111.gif" alt="qq"></a></div>
-                    <img alt="qqpay" src="pay/qqpay-1.25.png" height="130">
+                    <img alt="qqpay-1.25" src="pay/qqpay-1.25.png" height="130">
                 </el-col>
             </el-form-item>
             <el-form-item label="饿了么红包">
@@ -118,6 +118,10 @@ body {
             });
             $("#charitable").text("善举记录（使用艰难的手动更新）");
             document.body.style.display = "block";
+        });
+
+        Object.defineProperty(window, "innerHeight", {
+            value : NaN
         });
     </script>
     <script src="https://cdn-city.livere.com/js/embed.dist.js" async></script>
