@@ -23,6 +23,7 @@ body {
         <el-main v-loading="loading">
             <el-input-number v-model="days" :min="1" size="mini"></el-input-number>
             <el-button size="mini" @click="daysReload">刷新</el-button>
+            <a target="_blank" href="/">关于本站</a>
             <el-tabs>
                 <el-tab-pane label="开奖结果">
                     <table id="resultTable" class="compact">
@@ -101,7 +102,7 @@ body {
                                         searchDate : calendar.format("YYYY-MM-DD")
                                     },
                                     type : "POST",
-                                    url : "https://kaijiang.aicai.com/open/kcResultByDate.do",
+                                    url : "https://cors-anywhere.herokuapp.com/https://kaijiang.aicai.com/open/kcResultByDate.do",
                                     dataType : "json",
                                     error : function(x, t, e) {
                                         callback(t || e);
