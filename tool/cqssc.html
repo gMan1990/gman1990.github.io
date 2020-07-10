@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>重庆时时彩 - xhgxa</title>
+<link rel="stylesheet" href="https://unpkg.com/element-ui@2.13.2/lib/theme-chalk/index.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<style>
+body {
+    font-family: monospace;
+}
+
+[v-cloak] {
+    display: none;
+}
+</style>
+</head>
+<body>
+    <el-container v-cloak id="app" class="container">
+        <el-header class="text-center"><h3>重庆时时彩</h3></el-header>
+        <el-main v-loading="loading">
+            <el-input-number v-model="days" :min="1" size="mini"></el-input-number>
+            <el-button size="mini" @click="daysReload">刷新</el-button>
+            <el-tabs>
+                <el-tab-pane label="开奖结果">
+                    <table id="resultTable" class="compact">
+                        <thead>
+                            <tr>
+                                <th>期数</th>
+                                <th>开奖时间</th>
+                                <th>中奖号码</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </el-tab-pane>
+                <el-tab-pane label="遗漏-1">
+                    <table id="missTable_1" class="compact">
+                        <thead>
+                            <tr>
+                                <th>号码</th>
+                                <th>遗漏</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </el-tab-pane>
+                <el-tab-pane label="遗漏-2">
+                    <table id="missTable_2" class="compact">
+                        <thead>
+                            <tr>
+                                <th>号码</th>
+                                <th>遗漏</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </el-tab-pane>
+                <el-tab-pane label="遗漏-3">
+                    <table id="missTable_3" class="compact">
+                        <thead>
+                            <tr>
+                                <th>号码</th>
+                                <th>遗漏</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </el-tab-pane>
+            </el-tabs>
+        </el-main>
+        <el-footer class="text-center">版权所有 · All rights reserved</el-footer>
+    </el-container>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/async@3.2.0/dist/async.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/element-ui@2.13.2/lib/index.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script>
+        jQuery(function($) {
+            new Vue({
+                el : "#app",
+                data : {
+                    days : 5,
+                    loading : false
+                },
+                created : function() {
+                    this.daysReload();
+                },
+                methods : {
+                    daysReload : function() {
+                        this.loading = true;
+                        let that = this,
+                            tasks = [],
+                            calendar = moment();
+                        for (let i = that.days; i > 0; i--) {
+                            tasks.push(function(callback) {
+                                $.ajax({
+                                    data : {
+                                        gameIndex : 301,
+                                        searchDate : calendar.format("YYYY-MM-DD")
+                                    },
+                                    type : "POST",
+                                    url : "https://kaijiang.aicai.com/open/kcResultByDate.do",
+                                    dataType : "json",
+                                    error : function(x, t, e) {
+                                        callback(t || e);
+                                    },
+                                    success : function(d) {
+                                        calendar.subtract(1, "d");
+                                        callback(null, d.resultHtml);
+                                    }
+                                });
+                            });
+                        }
+                        async.series(tasks, function(err, results) {
+                            let result = [],
+                                $tds = $("td", results.join());
+                            for (let i = 0, j = $tds.length; i < j; i += 3) {
+                                result.push([ $.text($tds[i]), $.text($tds[i + 1]), $.text($tds[i + 2]).split("|") ]);
+                            }
+                            that.resultTable && that.resultTable.destroy();
+                            that.resultTable = $("#resultTable").DataTable({
+                                dom : "ifrt",
+                                paging : false,
+                                autoWidth : false,
+                                order : [ [ 0, "desc" ] ],
+                                data : result
+                            });
+                            for (let i = 1; i <= 3; i++) {
+                                that.numsFill(i, 0, new Array(i), result, []);
+                            }
+                            that.loading = false;
+                        });
+                    },
+                    /**
+                     * @param i
+                     *            号码索引
+                     * @param j
+                     *            号码起始
+                     * @param nums
+                     *            号码存储
+                     * @param result
+                     *            开奖结果
+                     */
+                    numsFill : function(i, j, nums, result, data) {
+                        if (1 == i) {
+                            for (; j < 10;) {
+                                nums[nums.length - i] = (j++).toString();
+                                this.numsLeft(nums, result, data);
+                            }
+                            this.numsShow("missTable_" + nums.length, data);
+                        } else {
+                            for (; j < 10;) {
+                                nums[nums.length - i] = (j++).toString();
+                                this.numsFill(i - 1, j, nums, result, data);
+                            }
+                        }
+                    },
+                    numsLeft : function(nums, result, data) {
+                        let left = 0;
+                        for (let m = 0; m < result.length; m++, left++) {
+                            if (this.containsAll(result[m][2], nums)) {
+                                break;
+                            }
+                        }
+                        data.push([ [ ...nums ], left ]);
+                    },
+                    numsShow : function(id, data) {
+                        this[id] && this[id].destroy();
+                        this[id] = $("#" + id).DataTable({
+                            dom : "ifrt",
+                            paging : false,
+                            autoWidth : false,
+                            order : [ [ 1, "desc" ] ],
+                            data
+                        });
+                    },
+                    containsAll : (source, target) => target.every(v => source.includes(v))
+                }
+            });
+        });
+    </script>
+</body>
+</html>
