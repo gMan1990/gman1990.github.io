@@ -63,15 +63,15 @@ body {
             <el-form-item label="每天领红包">
                 <el-col :sm="8">
                     <div>饿了么红包</div>
-                    <img alt="eleme_1" src="http://qr.topscan.com/api.php?w=100&m=0&text=http%3A%2F%2Fj.goup.group%2Fweixin%2Fjump.php%3Fjump_type%3Dgzh_menu%26menu_name%3Deleme_1"><!-- wx-外卖互助 -->
+                    <img id="eleme"><!-- wx-外卖互助 -->
                 </el-col>
                 <el-col :sm="8">
                     <div>美团外卖红包</div>
-                    <img alt="meituan_1" src="http://qr.topscan.com/api.php?w=100&m=0&text=http%3A%2F%2Fj.goup.group%2Fweixin%2Fjump.php%3Fjump_type%3Dgzh_menu%26menu_name%3Dmeituan_1"><!-- wx-外卖互助 -->
+                    <img id="meituan"><!-- wx-外卖互助 -->
                 </el-col>
                 <el-col :sm="8">
                     <div>支付宝红包(线下花呗)</div>
-                    <img alt="646135478" src="http://qr.topscan.com/api.php?w=100&m=0&text=cgamc1x09757u1dcutj31z2o314LQ0"><!-- http://ip111.cn/ -->
+                    <img id="646135478"><!-- http://ip111.cn/ -->
                 </el-col>
             </el-form-item>
         </el-form>
@@ -110,6 +110,17 @@ body {
             new Vue({
                 el : "#app"
             });
+            $.each([
+                [ "eleme", "http://waimai.ituoye.com/redirect/coupon/waimaihuzhu/ouVT65mJ2VxOsPL5UGFdHaavGIys/eleme/caidan" ],
+                [ "meituan", "http://waimai.ituoye.com/redirect/coupon/waimaihuzhu/ouVT65mJ2VxOsPL5UGFdHaavGIys/meituan/caidan" ],
+                [ "646135478", "cgamc1x09757u1dcutj31z2o314LQ0" ]
+            ], function(i, v) {
+                document.getElementById(v[0]).src = "http://qr.topscan.com/api.php?" + $.param({
+                    w : 110,
+                    m : 0,
+                    text : v[1]
+                });
+            });
             $("#myTable").DataTable({
                 dom : '<"#charitable.float-left">frtip',
                 autoWidth : false,
@@ -140,5 +151,6 @@ body {
         });
     </script>
     <script src="https://cdn-city.livere.com/js/embed.dist.js" async></script>
+    <iframe hidden allow="autoplay" src="https://begging.life/static/audio/moe.mp3"></iframe>
 </body>
 </html>
