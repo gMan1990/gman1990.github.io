@@ -63,15 +63,15 @@ body {
             <el-form-item label="每天领红包">
                 <el-col :sm="8">
                     <div>饿了么红包</div>
-                    <img id="eleme"><!-- wx-外卖互助 -->
+                    <img id="eleme">
                 </el-col>
                 <el-col :sm="8">
                     <div>美团外卖红包</div>
-                    <img id="meituan"><!-- wx-外卖互助 -->
+                    <img id="meituan">
                 </el-col>
                 <el-col :sm="8">
-                    <div>支付宝红包(线下花呗)</div>
-                    <img id="646135478"><!-- http://ip111.cn/ -->
+                    <div>花呗线下红包</div>
+                    <img id="huabei">
                 </el-col>
             </el-form-item>
         </el-form>
@@ -111,13 +111,15 @@ body {
                 el : "#app"
             });
             $.each([
+                /* wx-外卖互助 */
                 [ "eleme", "http://waimai.ituoye.com/redirect/coupon/waimaihuzhu/ouVT65mJ2VxOsPL5UGFdHaavGIys/eleme/caidan" ],
-                [ "meituan", "http://waimai.ituoye.com/redirect/coupon/waimaihuzhu/ouVT65mJ2VxOsPL5UGFdHaavGIys/meituan/caidan" ],
-                [ "646135478", "cgamc1x09757u1dcutj31z2o314LQ0" ]
+                /* hrka.cc */
+                [ "meituan", "https://tb.g2h3.com/4aJdL" ],
+                /* ip111.cn-646135478 */
+                [ "huabei", "cgamc1x09757u1dcutj31z2o314LQ0" ]
             ], function(i, v) {
-                document.getElementById(v[0]).src = "http://qr.topscan.com/api.php?" + $.param({
-                    w : 110,
-                    m : 0,
+                document.getElementById(v[0]).src = "https://wenhairu.com/static/api/qr/?" + $.param({
+                    size : 110,
                     text : v[1]
                 });
             });
