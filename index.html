@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>喜欢高兴爱 - xhgxa</title>
 <link rel="stylesheet" href="https://unpkg.com/element-ui@2.13.2/lib/theme-chalk/index.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 <style>
 body {
     background-size: contain;
@@ -49,29 +49,45 @@ body {
             <el-form-item label="￥1.25">
                 <el-col :sm="8">
                     <div>支付宝(推荐)</div>
-                    <img alt="alipay-1.25" src="pay/alipay-1.25.png" height="130">
+                    <img alt="alipay-1.25" src="pay/alipay-1.25.png" height="100">
                 </el-col>
                 <el-col :sm="8">
                     <div>微信付</div>
-                    <img alt="wxpay-1.25" src="pay/wxpay-1.25.png" height="130">
+                    <img alt="wxpay-1.25" src="pay/wxpay-1.25.png" height="100">
                 </el-col>
                 <el-col :sm="8">
-                    <div>企鹅付<a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=695897765&site=qq&menu=yes"><img src="https://pub.idqqimg.com/qconn/wpa/button/button_111.gif" alt="qq"></a></div>
-                    <img alt="qqpay-1.25" src="pay/qqpay-1.25.png" height="130">
+                    <div>QQ支付<a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=695897765&site=qq&menu=yes"><img src="https://pub.idqqimg.com/wpa/images/counseling_style_51.png" alt="qq"></a></div>
+                    <img alt="qqpay-1.25" src="pay/qqpay-1.25.png" height="100">
                 </el-col>
             </el-form-item>
             <el-form-item label="每天领红包">
+                <el-col :sm="8">
+                    <div>饿了么红包2</div>
+                    <img id="eleme2">
+                </el-col>
                 <el-col :sm="8">
                     <div>饿了么红包</div>
                     <img id="eleme">
                 </el-col>
                 <el-col :sm="8">
+                    <div>饿了么红包3</div>
+                    <div class="m-auto" style="width: 140px;height: 140px;background-position: -33px -626px;background-image: url('https://tva1.sinaimg.cn/large/007I6HASly1glnour2auyj30eq0lygqq.jpg');"></div>
+                </el-col>
+                <el-col :sm="6">
                     <div>美团外卖红包</div>
                     <img id="meituan">
                 </el-col>
-                <el-col :sm="8">
+                <el-col :sm="6">
+                    <div>美团外卖红包2</div>
+                    <img id="meituan2">
+                </el-col>
+                <el-col :sm="6">
                     <div>花呗线下红包</div>
                     <img id="huabei">
+                </el-col>
+                <el-col :sm="6">
+                    <div>微信扫</div>
+                    <img alt="云货优选" src="pay/云货优选.png" height="140">
                 </el-col>
             </el-form-item>
         </el-form>
@@ -114,12 +130,14 @@ body {
                 /* wx-外卖互助 */
                 [ "eleme", "http://waimai.ituoye.com/redirect/coupon/waimaihuzhu/ouVT65mJ2VxOsPL5UGFdHaavGIys/eleme/caidan" ],
                 /* hrka.cc */
-                [ "meituan", "https://tb.g2h3.com/4aJdL" ],
+                [ "meituan", "https://dpurl.cn/dd4UOT1" ],
+                [ "eleme2", "https://h5.ele.me/ant/qrcode?open_type=miniapp&url_id=35&inviterId=4499d59&fromChannel=elmc&chInfo=ch_app_chsub_Photo" ],
+                [ "meituan2", "https://dpurl.cn/5YSc9XV" ],
                 /* ip111.cn-646135478 */
                 [ "huabei", "cgamc1x09757u1dcutj31z2o314LQ0" ]
             ], function(i, v) {
                 document.getElementById(v[0]).src = "https://wenhairu.com/static/api/qr/?" + $.param({
-                    size : 110,
+                    size : 140,
                     text : v[1]
                 });
             });
