@@ -35,7 +35,7 @@ body {
 </style>
 </head>
 <body v-cloak>
-    <div id="container" class="container">
+    <article datePublished="20201105T061216Z" id="container" class="container">
         <el-form id="app" label-width="54px" @submit.native.prevent>
             <el-form-item>
                 <h3>日行一善，防止抑郁</h3>
@@ -49,21 +49,21 @@ body {
             <el-form-item label="￥1.25">
                 <el-col :sm="8">
                     <div>支付宝(推荐)</div>
-                    <img alt="alipay-1.25" src="pay/alipay-1.25.png" height="100">
+                    <img alt="alipay" src="pay/alipay.png" height="100" style="outline: red dashed 1px">
                 </el-col>
                 <el-col :sm="8">
                     <div>微信付</div>
-                    <img alt="wxpay-1.25" src="pay/wxpay-1.25.png" height="100">
+                    <img alt="wxpay" src="pay/wxpay.png" height="100">
                 </el-col>
                 <el-col :sm="8">
                     <div>QQ支付<a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=695897765&site=qq&menu=yes"><img src="https://pub.idqqimg.com/wpa/images/counseling_style_51.png" alt="qq"></a></div>
-                    <img alt="qqpay-1.25" src="pay/qqpay-1.25.png" height="100">
+                    <img alt="qqpay" src="pay/qqpay.png" height="100">
                 </el-col>
             </el-form-item>
             <el-form-item label="每天领红包">
                 <el-col :sm="8">
                     <div>饿了么红包2</div>
-                    <img id="eleme2">
+                    <img id="eleme2" style="outline: red dashed 1px">
                 </el-col>
                 <el-col :sm="8">
                     <div>饿了么红包</div>
@@ -71,7 +71,7 @@ body {
                 </el-col>
                 <el-col :sm="8">
                     <div>饿了么红包3</div>
-                    <div class="m-auto" style="width: 140px;height: 140px;background-position: -33px -626px;background-image: url('https://tva1.sinaimg.cn/large/007I6HASly1glnour2auyj30eq0lygqq.jpg');"></div>
+                    <div class="m-auto" style="width: 140px;height: 140px;background-position: -33px -626px;background-image: url('https://pic1.xuehuaimg.com/proxy/https://tva1.sinaimg.cn/large/007I6HASly1glnour2auyj30eq0lygqq.jpg');"></div>
                 </el-col>
                 <el-col :sm="6">
                     <div>美团外卖红包</div>
@@ -82,8 +82,8 @@ body {
                     <img id="meituan2">
                 </el-col>
                 <el-col :sm="6">
-                    <div>花呗线下红包</div>
-                    <img id="huabei">
+                    <div>支付宝红包</div>
+                    <img id="huabei" style="outline: red dashed 1px">
                 </el-col>
                 <el-col :sm="6">
                     <div>微信扫</div>
@@ -108,7 +108,7 @@ body {
             <div>无房无车无友 · 三无个人出品</div>
             <div>版权所有 · All rights reserved</div>
         </footer>
-    </div>
+    </article>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/underscore@1.10.2/underscore.min.js"></script><!-- or Lodash -->
@@ -134,7 +134,7 @@ body {
                 [ "eleme2", "https://h5.ele.me/ant/qrcode?open_type=miniapp&url_id=35&inviterId=4499d59&fromChannel=elmc&chInfo=ch_app_chsub_Photo" ],
                 [ "meituan2", "https://dpurl.cn/5YSc9XV" ],
                 /* ip111.cn-646135478 */
-                [ "huabei", "cgamc1x09757u1dcutj31z2o314LQ0" ]
+                [ "huabei", "Eq611w14030nl5qc083clmkie78tb" ]
             ], function(i, v) {
                 document.getElementById(v[0]).src = "https://wenhairu.com/static/api/qr/?" + $.param({
                     size : 140,
@@ -145,22 +145,32 @@ body {
                 dom : '<"#charitable.float-left">frtip',
                 autoWidth : false,
                 order : [ [ 2, "desc" ] ],
+                columns : [
+                    { type : "string" },
+                    { type : "num", className : "text-right" },
+                    { type : "string" },
+                    { type : "string" },
+                    { type : "string" }
+                ],
                 data : [
-                    [ "**煜", 1.25, "2021-07-03 11:55", "alipay", "大富大贵", 1, "q-1147835088" ],
-                    [ "LOVELESS", 1.25, "2020-08-01 07:23", "qqpay", "青云直上", 1, "q-1638147903" ],
-                    [ "a*t", 1.25, "2020-07-17 15:07", "wxpay", "平平安安", 1, "w-a*t" ],
-                    [ "欢猫qaqa", 1.25, "2020-06-06 18:13", "wxpay", "可口可乐", 1, "b-26218615" ],
-                    [ "**兴", 1.25, "2020-06-02 13:03", "alipay", "日进斗金", 0 ],
-                    [ "**瑞", 1.25, "2020-06-01 10:15", "alipay", "日进斗金", 0 ],
-                    [ "**瑞", 1.25, "2020-06-01 10:11", "alipay", "日进斗金", 0 ],
-                    [ "**梅", 1.25, "2020-05-31 21:09", " wxpay", "日进斗金", 0 ],
-                    [ "**凯", 1.25, "2020-05-31 17:38", "alipay", "日进斗金", 0 ],
-                    [ " *婷", 1.25, "2020-05-31 12:50", " wxpay", "日进斗金", 0 ],
-                    [ " *婷", 1.25, "2020-05-31 08:43", " wxpay", "日进斗金", 0 ],
-                    [ " *柳", 1.25, "2020-05-30 14:50", "alipay", "日进斗金", 0 ],
-                    [ "**军", 1.25, "2020-05-30 14:33", "alipay", "日进斗金", 0 ],
-                    [ "**钰", 1.25, "2020-05-29 16:47", "alipay", "日进斗金", 0 ],
-                    [ " *钙", 1.25, "2020-05-29 11:25", "alipay", "日进斗金", 0 ]
+                    [ "*年", "12.50", "2021-10-13 18:53", "wxpay", "恭喜发财", 1 ],
+                    [ "blank-1", "6.66", "2021-09-13 08:22", "qqpay4", "万事顺心", 1, "q-1551513370" ],
+                    [ "**杰", "1.25", "2021-07-23 19:13", "alipay", "健康快乐", 1 ],
+                    [ "**煜", "1.25", "2021-07-03 11:55", "alipay", "大富大贵", 1, "q-1147835088" ],
+                    [ "LOVELESS", "1.25", "2020-08-01 07:23", "qqpay4", "青云直上", 1, "q-1638147903" ],
+                    [ "a*t", "1.25", "2020-07-17 15:07", "wxpay", "平平安安", 1, "w-a*t" ],
+                    [ "欢猫qaqa", "1.25", "2020-06-06 18:13", "wxpay", "可口可乐", 1, "b-26218615" ],
+                    [ "**兴", "1.25", "2020-06-02 13:03", "alipay", "日进斗金", 0 ],
+                    [ "**瑞", "1.25", "2020-06-01 10:15", "alipay", "日进斗金", 0 ],
+                    [ "**瑞", "1.25", "2020-06-01 10:11", "alipay", "日进斗金", 0 ],
+                    [ "**梅", "1.25", "2020-05-31 21:09", " wxpay", "日进斗金", 0 ],
+                    [ "**凯", "1.25", "2020-05-31 17:38", "alipay", "日进斗金", 0 ],
+                    [ " *婷", "1.25", "2020-05-31 12:50", " wxpay", "日进斗金", 0 ],
+                    [ " *婷", "1.25", "2020-05-31 08:43", " wxpay", "日进斗金", 0 ],
+                    [ " *柳", "1.25", "2020-05-30 14:50", "alipay", "日进斗金", 0 ],
+                    [ "**军", "1.25", "2020-05-30 14:33", "alipay", "日进斗金", 0 ],
+                    [ "**钰", "1.25", "2020-05-29 16:47", "alipay", "日进斗金", 0 ],
+                    [ " *钙", "1.25", "2020-05-29 11:25", "alipay", "日进斗金", 0 ]
                 ]
             });
             $("#charitable").text("善举记录（使用艰难的手动更新）");
@@ -175,6 +185,11 @@ body {
         });
     </script>
     <script src="https://cdn-city.livere.com/js/embed.dist.js" async></script>
-    <iframe hidden allow="autoplay" src="https://www.yunyoujun.cn/give-me-money/love.507711d9.mp3"></iframe>
+    <!--
+    - https://v2ex.com/t/695055 https://begging.life/ https://begging.life/static/audio/moe.mp3
+        - https://www.yunyoujun.cn/give-me-money/love.507711d9.mp3 https://github.com/YunYouJun/give-me-money
+    - jiayu.mybabya.com https://jiayu.mybabya.com/Music/dinosaur2.wav
+    -->
+    <iframe hidden allow="autoplay" src="https://cdn.jsdelivr.net/gh/YunYouJun/give-me-money@1.0.0/static/audio/love.mp3"></iframe>
 </body>
 </html>
